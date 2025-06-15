@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Video Cover Finder</title>
+    <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
 </head>
 <body>
-
+    <header class="vk-header">
+        <img src="{{ url_for('images', path='logo.png') }}" alt="VK logo">
+        <h1>VK Video Cover Finder</h1>
+    </header>
+    <main>
+        <button class="btn btn-primary">Загрузить видео</button>
+        <button class="btn btn-disabled" disabled>Найти заставку</button>
+        <button class="btn btn-disabled" disabled>Скачать заставку</button>
+    </main>
 </body>
-</html>
+</html>>

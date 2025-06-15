@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <title>Video Cover Finder</title>
-    <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VK Video Cover Finder</title>
+  <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header class="vk-header">
-        <img src="{{ url_for('images', path='logo.png') }}" alt="VK logo">
-        <h1>VK Video Cover Finder</h1>
-    </header>
-    <main>
-        <button class="btn btn-primary">Загрузить видео</button>
-        <button class="btn btn-disabled" disabled>Найти заставку</button>
-        <button class="btn btn-disabled" disabled>Скачать заставку</button>
-    </main>
+  <header class="vk-header">
+    <div class="vk-header-content">
+      <img src="{{ url_for('images', path='logo.png') }}" alt="VK Logo" class="vk-logo">
+      <h1 class="vk-title">VK Series Intro</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Окно загрузки видео -->
+    <div class="upload-box" id="uploadBox">
+      <div class="upload-icon">📁</div>
+      <p class="upload-text">Перетащите видео или</p>
+      <button class="upload-btn">Выбрать файл</button>
+      <input type="file" id="videoInput" accept="video/*">
+    </div>
+    <!-- Превью видео -->
+    <video id="videoPreview" controls class="video-preview" hidden></video>
+
+    <!-- Кнопки действий -->
+    <div class="button-group">
+      <button class="btn btn-primary" id="findBtn" disabled>Найти заставку</button>
+      <button class="btn btn-primary" id="downloadBtn" disabled>Скачать заставку</button>
+    </div>
+  </main>
+
+  <!-- Подключение внешнего скрипта -->
+  <script src="script.js"></script>
 </body>
-</html>>
+</html>

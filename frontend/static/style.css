@@ -1,37 +1,111 @@
+/* Общие стили */
 body {
-    background-color: #f7f8fa;
-    font-family: 'PT Sans', sans-serif;
-    color: #1d1f21;
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+  background-color: #f7f8fa;
+  color: #1d1f21;
 }
+
+/* Шапка */
 .vk-header {
-    background-color: #5181B8;
-    padding: 10px;
-    display: flex;
-    align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 }
-.vk-header h1 {
-    color: white;
-    margin-left: 10px;
-    font-size: 24px;
+.vk-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 100px;
+  display: flex;
+  align-items: center;
 }
-.vk-header img {
-    height: 40px;
+.vk-logo {
+  height: 40px;
+  margin-right: 20px;
+}
+.vk-title {
+  font-size: 20px;
+  color: #1d1f21;
+  margin: 0;
+}
+
+/* Контейнер страницы */
+.container {
+  max-width: 800px;
+  margin: 100px auto 0;
+  text-align: center;
+}
+
+/* Окно загрузки (по примеру загрузки данных измерений) */
+.upload-box {
+  width: 100%;
+  height: 300px;
+  background-color: #ffffff;
+  border: 2px dashed #5181b8;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.upload-box .upload-icon {
+  font-size: 40px;
+  color: #5181b8;
+  margin-bottom: 10px;
+}
+.upload-box .upload-text {
+  font-size: 18px;
+  color: #666666;
+  margin-bottom: 10px;
+}
+.upload-box .upload-btn {
+  padding: 8px 16px;
+  background-color: #5181b8;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.upload-box input[type='file'] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+/* Превью видео */
+.video-preview {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Кнопки */
+.button-group {
+  margin-top: 20px;
 }
 .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
 }
 .btn-primary {
-    background-color: #4A76A8;
-    color: white;
+  background-color: #5181b8;
+  color: #ffffff;
 }
-.btn-disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
+.btn-primary:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

@@ -5,6 +5,9 @@ const videoPreview = document.getElementById('videoPreview');
 const findBtn = document.getElementById('findBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 
+// Останавливаем всплытие клика от input, чтобы не триггерился uploadBox повторно
+videoInput.addEventListener('click', e => e.stopPropagation());
+
 // Клик по области загрузки открывает проводник
 uploadBox.addEventListener('click', () => videoInput.click());
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VK Video Cover Finder</title>
+  <title>VK Series Intro</title>
   <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -17,10 +17,10 @@
   <main class="container">
     <!-- Окно загрузки видео -->
     <div class="upload-box" id="uploadBox">
-      <div class="upload-icon">📁</div>
-      <p class="upload-text">Перетащите видео или</p>
+      <div class="upload-icon">🎥</div>
+      <p class="upload-text">Перетащите видео .mp4 в эту область или</p>
       <button class="upload-btn">Выбрать файл</button>
-      <input type="file" id="videoInput" accept="video/*">
+      <input type="file" id="videoInput" accept="video/mp4">
     </div>
     <!-- Превью видео -->
     <video id="videoPreview" controls class="video-preview" hidden></video>
@@ -31,6 +31,13 @@
       <button class="btn btn-primary" id="downloadBtn" disabled>Скачать заставку</button>
     </div>
   </main>
-  <script src="script.js"></script>
+
+  <!-- Подпись внизу -->
+  <div class="footer-credit">
+    Сделано Китаевым Степаном в качестве тестового задания на стажировку
+  </div>
+
+  <!-- Подключение внешнего скрипта -->
+  <script src="static/script.js"></script>
 </body>
 </html>

@@ -114,3 +114,23 @@ body {
   font-size: 12px;
   color: #888888;
 }
+
+.result-text {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 16px;
+  color: #1d1f21;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.result-text p {
+  margin: 5px 0;
+}
+.result-text strong {
+  color: #0076fe;
+}

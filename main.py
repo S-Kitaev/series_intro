@@ -1,18 +1,15 @@
 import os
 import shutil
+import traceback
 
-from fastapi import Request, FastAPI, UploadFile, File, HTTPException
+from fastapi import Request, FastAPI, UploadFile, File, HTTPException, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 
-from backend.detector import IntroDetector
+from backend.detector import detect_intro
 
 app = FastAPI()
-
-# инициализация детектора
-MODEL_PATH = "backend/models/model.pt"
-detector = IntroDetector(MODEL_PATH)
 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 app.mount("/images", StaticFiles(directory="frontend/images"), name="images")
@@ -25,23 +22,30 @@ async def favicon():
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    # Возвращаем шаблон home.html без динамического контекста
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.post("/detect_intro/")
-async def detect_intro(file: UploadFile = File(...)):
-    # сохраняем временно
-    tmp_path = f"/tmp/{file.filename}"
-    with open(tmp_path, "wb") as f:
-        shutil.copyfileobj(file.file, f)
+async def detect_intro_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...)
+):
+    # будем работать ос временным файлом
+    tmp = f"temp_{file.filename}"
+    with open(tmp, "wb") as out:
+        shutil.copyfileobj(file.file, out)
 
+    background_tasks.add_task(os.remove, tmp)
+    await file.close()
+
+    # Детектирование
     try:
-        start, end = detector.detect(tmp_path)
+        start, end = detect_intro(tmp)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-    # убираем временный файл
-    os.remove(tmp_path)
+        traceback.print_exc()
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
 
     if start is None:
         return JSONResponse({"message": "Intro not found"}, status_code=404)
